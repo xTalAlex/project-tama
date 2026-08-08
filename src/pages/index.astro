@@ -1,17 +1,27 @@
 ---
+import "../styles/global.css";
 
+import Tamagotchi from "../components/Tamagotchi.vue";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Tama</title>
+  </head>
+  <body class="bg-slate-100">
+    <main class="p-6">
+      <h1 class="text-center text-3xl font-bold uppercase">Tama</h1>
+
+      <div class="mt-24 w-full grid place-items-center">
+        <div class="border-emerald-700 border-8 max-w-sm w-full h-96">
+          <Tamagotchi client:only="vue" />
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
