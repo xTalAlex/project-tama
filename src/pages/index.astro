@@ -1,27 +1,68 @@
 ---
 import "../styles/global.css";
-
 import Tamagotchi from "../components/Tamagotchi.vue";
+import CardCollection from "../components/CardCollection.vue";
 ---
 
-<html lang="en">
+<html lang="it">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>Tama</title>
   </head>
-  <body class="bg-slate-100">
-    <main class="p-6">
-      <h1 class="text-center text-3xl font-bold uppercase">Tama</h1>
+  <body class="bg-slate-950">
+    <main class="mx-auto flex min-h-dvh w-full max-w-6xl flex-col px-4 py-4">
+      <header class="pb-4 text-center">
+        <h1 class="text-2xl font-bold uppercase tracking-[0.3em] text-cyan-300">
+          Tama
+        </h1>
+      </header>
 
-      <div class="mt-24 w-full grid place-items-center">
-        <div class="border-emerald-700 border-8 max-w-sm w-full h-96">
-          <Tamagotchi client:only="vue" />
-        </div>
+      <div
+        class="grid flex-1 gap-4 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:items-start"
+      >
+        <section class="flex flex-col items-center gap-3">
+          <div
+            class="tama-frame w-full max-w-[420px] overflow-hidden rounded-2xl border-8 border-emerald-700"
+          >
+            <Tamagotchi client:only="vue" />
+          </div>
+          <div class="flex w-full max-w-[420px] gap-3">
+            <button
+              id="world-btn"
+              type="button"
+              class="flex-1 rounded-lg border-2 border-cyan-400 bg-slate-900 px-4 py-3 font-bold uppercase tracking-widest text-cyan-300 transition hover:bg-cyan-950 active:scale-95"
+            >
+              WORLD
+            </button>
+            <button
+              id="home-btn"
+              type="button"
+              class="flex-1 rounded-lg border-2 border-slate-600 bg-slate-900 px-4 py-3 font-bold uppercase tracking-widest text-slate-300 transition hover:bg-slate-800 active:scale-95"
+            >
+              HOME
+            </button>
+          </div>
+        </section>
+
+        <aside class="w-full">
+          <CardCollection client:only="vue" />
+        </aside>
       </div>
     </main>
   </body>
 </html>
+
+<script>
+  import { requestScene } from "../game/store";
+
+  document
+    .getElementById("world-btn")
+    ?.addEventListener("click", () => requestScene("world"));
+  document
+    .getElementById("home-btn")
+    ?.addEventListener("click", () => requestScene("home"));
+</script>
